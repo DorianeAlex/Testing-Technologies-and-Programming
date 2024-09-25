@@ -97,93 +97,96 @@
 // // console.log(admin.expressYourRole());
 // console.log(admin.sayHello());
 
-// Polymorphism
-// you will create a User class that commits the classes that inherit from it to calculate the number of scores that a user has depending on the number of articles that he has authored or edited.
-class User {
-    constructor(){
-        this._numberOfArticles = 0;
-    }
-// Add to the User class the methods to set and get the number of articles
-// getNumberOfArticles()     
-    getNumberOfArticles(){
-        return this._numberOfArticles;
-    }
-// setNumberOfArticles(int numberOfArticles)
-    setNumberOfArticles(numberOfArticles){
-        return this._numberOfArticles = numberOfArticles;
-    }
-// Add to the User class a third method
-// calcScores(), that performs the scores calculations separately for each class.
-calcScores(){
-        return 0;
-    }
-}
-// Create an Author class that inherits from the User class.
-class Author extends User {
-// In the Author create a calcScores() method that returns the number of scores from the following calculation: numberOfArticles * 10 + 20 
-    calcScores(){
-        return this._numberOfArticles * 10 + 20;
-    }
-}
-// Create an Editor class that inherits from the User class. 
-class Editor extends User {
-// In the Editor create a calcScores() method that returns the number of scores from the following calculation: numberOfArticles * 6 + 15
-    calcScores(){
-        return this._numberOfArticles * 6 + 15;
-    }
-}
-// Create an object, author, from the Author class, set the number of articles to 8, and print the scores that the author gained.
-const author = new Author();
-author.NumberOfArticles(8);
-// Create another object, editor, from the Editor class, set the number of articles to 15, and print the scores that the editor gained.
-const editor = new Editor();
-editor.NumberOfArticles(15);
-
-console.log("Author's Scores: " , author.calcScores());
-console.log("Editor's Scores: " , editor.calcScores());
-
-// Abstraction
-
-// // 1. Create an abstract class with the name of User: 
+// // Polymorphism
+// // you will create a User class that commits the classes that inherit from it to calculate the number of scores that a user has depending on the number of articles that he has authored or edited.
 // class User {
-//     // Add to the class, a property with the name of username.
-//     constructor(username){
-//         this.username = username;
+//     constructor(){
+//         this._numberOfArticles = 0;
 //     }
-// // Add to the class, an abstract method with the name of stateYourRole().
-//     stateYourRole(){
-//         return "username";
+// // Add to the User class the methods to set and get the number of articles
+// // getNumberOfArticles()     
+//     getNumberOfArticles(){
+//         return this._numberOfArticles;
 //     }
-
-// // Add to the class, the setter and getter methods to set and get the username.
-//     set username(username) {
-//         this._username = username;
+// // setNumberOfArticles(int numberOfArticles)
+//     setNumberOfArticles(numberOfArticles){
+//         return this._numberOfArticles = numberOfArticles;
 //     }
-
-//     get username() {
-//         return this.username;
-//     }
-// }
-
-// // 2.Create an Admin class that inherits the User abstract class: 
-// class Admin extends User {
-// // Add to the class a method stateYourRole() and let it return the string "admin".
-//     stateYourRole() {
-//         return "admin";
+// // Add to the User class a third method
+// // calcScores(), that performs the scores calculations separately for each class.
+// calcScores(){
+//         return 0;
 //     }
 // }
-// // 3. Create another class, Viewer that inherits the User abstract class: 
-// class Viewer extends User {
-//     //Add to the class a method stateYourRole() and let it return the string "viewer".
-//     stateYourRole() {
-//         return "viewer";
+// // Create an Author class that inherits from the User class.
+// class Author extends User {
+// // In the Author create a calcScores() method that returns the number of scores from the following calculation: numberOfArticles * 10 + 20 
+//     calcScores(){
+//         return this._numberOfArticles * 10 + 20;
 //     }
 // }
+// // Create an Editor class that inherits from the User class. 
+// class Editor extends User {
+// // In the Editor create a calcScores() method that returns the number of scores from the following calculation: numberOfArticles * 6 + 15
+//     calcScores(){
+//         return this._numberOfArticles * 6 + 15;
+//     }
+// }
+// // Create an object, author, from the Author class, set the number of articles to 8, and print the scores that the author gained.
+// const author = new Author();
+// author.NumberOfArticles(8);
+// // Create another object, editor, from the Editor class, set the number of articles to 15, and print the scores that the editor gained.
+// const editor = new Editor();
+// editor.NumberOfArticles(15);
 
-// //4. Create an object, admin, from the Admin class, set the username to "Balthazar", and make it return the string "admin".
-// const admin = new Admin("Balthazar");
-// console.log(admin.stateYourRole());
+// console.log("Author's Scores: " , author.calcScores());
+// console.log("Editor's Scores: " , editor.calcScores());
 
-// //5. Create an object, viewer, from the Viewer class, set the username to "Melchior", and make it return the string "viewer".
-// const viewer = new Viewer("Melchior");
-// console.log(viewer.stateYourRole());
+//Abstraction
+
+// 1. Create an abstract class with the name of User: 
+class User {
+    // Add to the class, a property with the name of username.
+    constructor(username){
+        //  Check if an attempt is made to create an object
+        if(this.constructor == User) {
+            throw new Error("Cannot instantiate abstract class")
+        }
+        // initialise variable
+        this._username = username;
+    }
+// Add to the class, an abstract method with the name of stateYourRole().
+    stateYourRole(){
+        return "username";
+    }
+
+// Add to the class, the setter and getter methods to set and get the username.
+    set username(username) {
+        this._username = username;
+    }
+
+    get username() {
+        return this.username;
+    }
+}
+// 2.Create an Admin class that inherits the User abstract class: 
+class Admin extends User {
+// Add to the class a method stateYourRole() and let it return the string "admin".
+    stateYourRole() {
+        return "admin";
+    }
+}
+// 3. Create another class, Viewer that inherits the User abstract class: 
+class Viewer extends User {
+    //Add to the class a method stateYourRole() and let it return the string "viewer".
+    stateYourRole() {
+        return "viewer";
+    }
+}
+//4. Create an object, admin, from the Admin class, set the username to "Balthazar", and make it return the string "admin".
+const admin = new Admin("Balthazar");
+console.log(admin._username, admin.stateYourRole());
+
+//5. Create an object, viewer, from the Viewer class, set the username to "Melchior", and make it return the string "viewer".
+const viewer = new Viewer("Melchior");
+console.log(viewer._username, viewer.stateYourRole());
