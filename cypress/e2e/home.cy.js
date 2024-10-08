@@ -17,10 +17,10 @@ describe('Cypress Example Test', () => {
     cy.visit('https://example.cypress.io/commands/actions');
 
     // query for the email input field
-    cy.get('.action-email').type('ec2282645@edinburghcollege.ac.uk');
+    cy.get('.action-email').type('example@edinburghcollege.ac.uk');
     // interact with the element
     // assert the content on the page
-    cy.get('.action-email').should('have.value', 'ec2282645@edinburghcollege.ac.uk');
+    cy.get('.action-email').should('have.value', 'example@edinburghcollege.ac.uk');
   })
 
  it('Visit this example page', () => {
